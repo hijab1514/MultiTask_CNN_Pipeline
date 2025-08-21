@@ -15,12 +15,12 @@ Ultrasound imaging provides a **non-invasive and affordable** method for early d
 
 This project presents two deep learning approaches for analyzing the **BUSI Breast Ultrasound Dataset**:
 
-### ✅ Approach 1: Two-Stage Pipeline
+###  Approach 1: Two-Stage Pipeline
 
 - **U-Net** for segmentation → localize tumors
 - **ResNet50** for classification → predict **Normal, Benign, or Malignant**
 
-### ✅ Approach 2: Multi-task Model
+###  Approach 2: Multi-task Model
 
 - A **shared ResNet50 backbone** with:
   - Segmentation head (decoder)
