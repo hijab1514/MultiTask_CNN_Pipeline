@@ -192,22 +192,4 @@ This project is released under the [MIT License](LICENSE).
 
 ---
 
-## ✅ What You Need to Do Next
-
-1. **Save this README** as `README.md` in your repo root.  
-2. Make sure you have:
-   - Your 3 `.ipynb` notebooks inside `notebooks/`
-   - `docs/flowchart.png` saved
-   - Optional plots in `results/`
-   - `requirements.txt` added
-   - `.gitignore` and `LICENSE`
-
-3. Commit & push to GitHub:
-   ```bash
-   git add .
-   git commit -m "Add notebooks + README + docs"
-   git push
-````
-
----
 
