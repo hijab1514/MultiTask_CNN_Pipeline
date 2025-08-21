@@ -1,0 +1,15 @@
+Multi-task Model Results
+Dice Score: 0.6506
+IoU: 0.5060
+Classification Accuracy: 0.9272
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      benign       0.95      0.94      0.95       179
+   malignant       0.91      0.87      0.89        84
+      normal       0.86      0.96      0.91        53
+
+    accuracy                           0.93       316
+   macro avg       0.91      0.93      0.92       316
+weighted avg       0.93      0.93      0.93       316
