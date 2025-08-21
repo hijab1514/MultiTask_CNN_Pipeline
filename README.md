@@ -97,7 +97,7 @@ Predicted Mask           Predicted Label
 
 ## 📝 Flowchart
 
-![Flowchart](docs/flowchart.png)
+![Flowchart](docs/KakaoTalk_20250821_201914552.png)
 
 ---
 
@@ -115,23 +115,54 @@ All experiments were implemented in **Kaggle Notebooks** (also included in the `
 
 ---
 
+Perfect! Here's a **visually appealing, GitHub-ready version** of your Results section using markdown with icons, colored highlights, and neat tables:
+
+---
+
 ## 📊 Results
 
 ### 🔹 Segmentation (U-Net)
 
-* Metrics: Dice Score, IoU
-* Visual Examples: *(Add sample mask overlays in `results/` folder)*
+**Metrics:**
+
+* 🟦 **Dice Score:** `0.6506`
+* 🟩 **IoU:** `0.5060`
+
+**Visual Examples:**
+*(Add sample mask overlays in `results/` folder)*
+
+---
 
 ### 🔹 Classification (ResNet50)
 
-* Accuracy: ****
-* Confusion Matrix: *(Insert confusion matrix plot)*
+**Metrics:**
 
-### 🔹 Multi-task Model
+* 🟦 **Accuracy:** `0.9272`
 
-* Classification Accuracy: **0.9272**
-* Segmentation Dice Score: **XX%**
-* Joint Training = more efficient + better clinical relevance
+**Confusion Matrix:**
+*(Insert confusion matrix plot here)*
+
+**Classification Report:**
+
+| Class            | Precision | Recall |  F1-score  | Support |
+| ---------------- | :-------: | :----: | :--------: | :-----: |
+| 🟢 Benign        |    0.95   |  0.94  |    0.95    |   179   |
+| 🔴 Malignant     |    0.91   |  0.87  |    0.89    |    84   |
+| 🟡 Normal        |    0.86   |  0.96  |    0.91    |    53   |
+| **Accuracy**     |           |        | **0.9272** |   316   |
+| **Macro Avg**    |    0.91   |  0.93  |    0.92    |   316   |
+| **Weighted Avg** |    0.93   |  0.93  |    0.93    |   316   |
+
+---
+
+### 🔹 Multi-task Model (Segmentation + Classification)
+
+**Metrics:**
+
+* 🟦 **Segmentation Dice Score:** `0.6506`
+* 🟩 **Segmentation IoU:** `0.5060`
+* 🟦 **Classification Accuracy:** `0.9272`
+
 
 ---
 
