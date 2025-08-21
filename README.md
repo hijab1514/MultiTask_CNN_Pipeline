@@ -1,4 +1,5 @@
 
+```markdown
 # 🩺 Multi-task Breast Ultrasound Analysis
 
 ![Python](https://img.shields.io/badge/Python-3.9-blue.svg)
@@ -9,25 +10,24 @@
 
 ## 📌 Project Overview
 
-Breast cancer is one of the leading causes of cancer-related deaths among women.
+Breast cancer is one of the leading causes of cancer-related deaths among women.  
 Ultrasound imaging provides a **non-invasive and affordable** method for early detection.
 
 This project presents two deep learning approaches for analyzing the **BUSI Breast Ultrasound Dataset**:
 
-1. **Two-Stage Pipeline**
+### ✅ Approach 1: Two-Stage Pipeline
 
-   * **U-Net** for segmentation → localize tumors
-   * **ResNet50** for classification → predict **Normal, Benign, or Malignant**
+- **U-Net** for segmentation → localize tumors
+- **ResNet50** for classification → predict **Normal, Benign, or Malignant**
 
-2. **Multi-task Model**
+### ✅ Approach 2: Multi-task Model
 
-   * A **shared ResNet50 backbone** with
+- A **shared ResNet50 backbone** with:
+  - Segmentation head (decoder)
+  - Classification head (fully connected)
+- Trained end-to-end with a **weighted loss**
 
-     * Segmentation head (decoder)
-     * Classification head (fully connected)
-   * Trained end-to-end with a **weighted loss**
-
-Both approaches are implemented in **PyTorch** (on Kaggle Notebook).
+Both approaches are implemented in **PyTorch** (on Kaggle Notebooks).
 
 ---
 
@@ -42,10 +42,12 @@ Both approaches are implemented in **PyTorch** (on Kaggle Notebook).
 **Folder Structure:**
 
 ```
-Dataset_BUSI_with_GT/
+
+Dataset\_BUSI\_with\_GT/
 │── normal/
 │── benign/
 │── malignant/
+
 ```
 
 ---
@@ -55,15 +57,17 @@ Dataset_BUSI_with_GT/
 ### 1️⃣ Two-Stage Pipeline
 
 ```
-[Input Image] 
-      ↓
+
+\[Input Image]
+↓
 U-Net (Segmentation) → Tumor Mask
-      ↓
+↓
 Crop Tumor ROI
-      ↓
+↓
 ResNet50 (Classification)
-      ↓
+↓
 Predicted Label: Normal / Benign / Malignant
+
 ```
 
 ---
@@ -71,15 +75,17 @@ Predicted Label: Normal / Benign / Malignant
 ### 2️⃣ Multi-task Model
 
 ```
-[Input: 224x224x3 Image]
-      ↓
+
+\[Input: 224x224x3 Image]
+↓
 Shared Backbone: ResNet50 (pretrained)
-      ↓                  ↓
+↓                  ↓
 Segmentation Head        Classification Head
 (Upsample → Conv)        (FC Layer → Softmax)
-      ↓                  ↓
+↓                  ↓
 Predicted Mask           Predicted Label
-```
+
+````
 
 📌 **Loss Function**
 
@@ -97,16 +103,15 @@ Predicted Mask           Predicted Label
 
 ## ⚙️ Implementation
 
-All experiments were implemented in **Kaggle Notebook**.
-Code is modularized into:
+All experiments were implemented in **Kaggle Notebooks** (also included in the `notebooks/` folder):
 
-* `unet.py` → U-Net model
-* `resnet_classifier.py` → ResNet50 classifier
-* `multitask_model.py` → Joint segmentation + classification
-* `dataset.py` → Dataset & preprocessing
-* `train.py` → Training loop
-* `inference.py` → Run inference on new images
-* `utils.py` → Metrics + visualization
+| Notebook                          | Description                                  |
+|-----------------------------------|----------------------------------------------|
+| `1_segmentation_unet.ipynb`       | U-Net segmentation training + evaluation     |
+| `2_classification_resnet50.ipynb` | ResNet50 classification on tumor crops       |
+| `3_multitask_model.ipynb`         | Joint segmentation + classification model    |
+
+👉 You can open these notebooks directly in Kaggle or Jupyter Notebook to view code, results, and visualizations.
 
 ---
 
@@ -114,21 +119,30 @@ Code is modularized into:
 
 ### 🔹 Segmentation (U-Net)
 
-* Metric: Dice Score, IoU
-* Example masks:
-  *(Add example visualizations here)*
+* Metrics: Dice Score, IoU
+* Visual Examples: *(Add sample mask overlays in `results/` folder)*
 
 ### 🔹 Classification (ResNet50)
 
-* Accuracy: XX%
-* Confusion Matrix:
-  *(Insert confusion matrix plot here)*
+* Accuracy: **XX%**
+* Confusion Matrix: *(Insert confusion matrix plot)*
 
 ### 🔹 Multi-task Model
 
-* Accuracy: XX%
-* Segmentation Dice: XX%
-* Joint Training → More efficient + clinical decision support ready
+* Classification Accuracy: **XX%**
+* Segmentation Dice Score: **XX%**
+* Joint Training = more efficient + better clinical relevance
+
+---
+
+## 📈 Visualizations
+
+Include the following plots (place in `results/`):
+
+* Training vs Validation Loss
+* Accuracy Curves
+* Confusion Matrix
+* Example Segmentation Masks with Predicted Labels
 
 ---
 
@@ -139,50 +153,31 @@ Code is modularized into:
 ```bash
 git clone https://github.com/username/breast-ultrasound-analysis.git
 cd breast-ultrasound-analysis
-```
+````
 
 ### 2. Install Dependencies
-
-```bash
-conda env create -f environment.yml
-conda activate busi-env
-```
-
-or
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Run Training
+### 3. Open Notebooks
+
+You can open any notebook in Jupyter or VSCode:
 
 ```bash
-python src/train.py --model multitask --epochs 50
+jupyter notebook notebooks/1_segmentation_unet.ipynb
 ```
 
-### 4. Inference Demo
-
-```bash
-python src/inference.py --image sample.png --model results/model_best.pth
-```
-
----
-
-## 📈 Visualizations
-
-* Training vs Validation Loss
-* Accuracy Curves
-* Example Segmentation Masks + Predicted Labels
-
-*(Add plots + screenshots here for attractiveness)*
+Or upload the notebook to [Kaggle](https://www.kaggle.com/) and run there.
 
 ---
 
 ## 🛠️ Future Work
 
 * Attention U-Net for improved segmentation
+* Data augmentation to improve generalization
 * Hyperparameter tuning
-* Extending dataset with data augmentation
 * Deploy as a web-based clinical decision support tool
 
 ---
@@ -190,6 +185,29 @@ python src/inference.py --image sample.png --model results/model_best.pth
 ## 📜 License
 
 This project is released under the [MIT License](LICENSE).
+
+---
+
+````
+
+---
+
+## ✅ What You Need to Do Next
+
+1. **Save this README** as `README.md` in your repo root.  
+2. Make sure you have:
+   - Your 3 `.ipynb` notebooks inside `notebooks/`
+   - `docs/flowchart.png` saved
+   - Optional plots in `results/`
+   - `requirements.txt` added
+   - `.gitignore` and `LICENSE`
+
+3. Commit & push to GitHub:
+   ```bash
+   git add .
+   git commit -m "Add notebooks + README + docs"
+   git push
+````
 
 ---
 
