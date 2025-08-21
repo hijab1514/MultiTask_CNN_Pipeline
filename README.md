@@ -151,8 +151,8 @@ Include the following plots (place in `results/`):
 ### 1. Clone Repo
 
 ```bash
-git clone https://github.com/username/breast-ultrasound-analysis.git
-cd breast-ultrasound-analysis
+git clone https://github.com/hijab1514/MultiTask_CNN_Pipeline.git
+
 ````
 
 ### 2. Install Dependencies
