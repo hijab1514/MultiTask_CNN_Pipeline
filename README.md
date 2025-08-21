@@ -124,12 +124,12 @@ All experiments were implemented in **Kaggle Notebooks** (also included in the `
 
 ### 🔹 Classification (ResNet50)
 
-* Accuracy: **XX%**
+* Accuracy: ****
 * Confusion Matrix: *(Insert confusion matrix plot)*
 
 ### 🔹 Multi-task Model
 
-* Classification Accuracy: **XX%**
+* Classification Accuracy: **0.9272**
 * Segmentation Dice Score: **XX%**
 * Joint Training = more efficient + better clinical relevance
 
