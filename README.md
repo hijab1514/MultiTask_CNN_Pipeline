@@ -117,8 +117,8 @@ Five-Panel Results (Input, GT Mask, Pred Mask, Heatmap, Overlay)
 
 ## 📝 Flowchart
 
+![FlowChart](docs/gradcam_flowchart.png)
 
-![FlowChart](docs/Grad cam flowchart.png)
 ---
 
 ## ⚙️ Implementation
