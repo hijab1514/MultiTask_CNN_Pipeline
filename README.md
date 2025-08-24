@@ -8,26 +8,41 @@
 
 ---
 
+Got it 👍 You already have **Approach 1** (Two-Stage Pipeline) and **Approach 2** (Multi-task Model).
+We just need to add your **third approach** (from your repo: *Multi-task CNN + Grad-CAM Explainability*) without touching the rest.
+
+Here’s the updated version with **Approach 3** added:
+
+---
+
 ## 📌 Project Overview
 
-Breast cancer is one of the leading causes of cancer-related deaths among women.  
+Breast cancer is one of the leading causes of cancer-related deaths among women.
 Ultrasound imaging provides a **non-invasive and affordable** method for early detection.
 
-This project presents two deep learning approaches for analyzing the **BUSI Breast Ultrasound Dataset**:
+This project presents three deep learning approaches for analyzing the **BUSI Breast Ultrasound Dataset**:
 
-###  Approach 1: Two-Stage Pipeline
+### Approach 1: Two-Stage Pipeline
 
-- **U-Net** for segmentation → localize tumors
-- **ResNet50** for classification → predict **Normal, Benign, or Malignant**
+* **U-Net** for segmentation → localize tumors
+* **ResNet50** for classification → predict **Normal, Benign, or Malignant**
 
-###  Approach 2: Multi-task Model
+### Approach 2: Multi-task Model
 
-- A **shared ResNet50 backbone** with:
-  - Segmentation head (decoder)
-  - Classification head (fully connected)
-- Trained end-to-end with a **weighted loss**
+* A **shared ResNet50 backbone** with:
 
-Both approaches are implemented in **PyTorch** (on Kaggle Notebooks).
+  * Segmentation head (decoder)
+  * Classification head (fully connected)
+* Trained end-to-end with a **weighted loss**
+
+### Approach 3: Multi-task CNN with Explainability (Grad-CAM)
+
+* A **CNN-based joint model** handling both tasks simultaneously:
+
+  * Segmentation branch → Dice/IoU evaluation
+  * Classification branch → Accuracy/F1 evaluation
+* **Grad-CAM heatmaps** highlight regions influencing predictions
+* Results are visualized in **five-panel figures** (Input, Mask, Prediction, Grad-CAM, Overlay)
 
 ---
 
@@ -42,12 +57,10 @@ Both approaches are implemented in **PyTorch** (on Kaggle Notebooks).
 **Folder Structure:**
 
 ```
-
-Dataset\_BUSI\_with\_GT/
+Dataset_BUDI_with_GT/
 │── normal/
 │── benign/
 │── malignant/
-
 ```
 
 ---
@@ -57,8 +70,7 @@ Dataset\_BUSI\_with\_GT/
 ### 1️⃣ Two-Stage Pipeline
 
 ```
-
-\[Input Image]
+[Input Image]
 ↓
 U-Net (Segmentation) → Tumor Mask
 ↓
@@ -67,7 +79,6 @@ Crop Tumor ROI
 ResNet50 (Classification)
 ↓
 Predicted Label: Normal / Benign / Malignant
-
 ```
 
 ---
@@ -75,8 +86,7 @@ Predicted Label: Normal / Benign / Malignant
 ### 2️⃣ Multi-task Model
 
 ```
-
-\[Input: 224x224x3 Image]
+[Input: 224x224x3 Image]
 ↓
 Shared Backbone: ResNet50 (pretrained)
 ↓                  ↓
@@ -84,14 +94,31 @@ Segmentation Head        Classification Head
 (Upsample → Conv)        (FC Layer → Softmax)
 ↓                  ↓
 Predicted Mask           Predicted Label
-
-````
+```
 
 📌 **Loss Function**
 
 * Segmentation Loss: Binary Cross Entropy (BCE)
 * Classification Loss: CrossEntropyLoss
 * Total Loss: `loss = loss_seg + loss_cls`
+
+---
+
+### 3️⃣ Multi-task CNN + Grad-CAM
+
+```
+[Input Image]
+↓
+Shared CNN Backbone
+↓                ↓
+Segmentation Head    Classification Head
+↓                ↓
+Mask Prediction       Class Prediction
+        ↘       ↙
+     Grad-CAM Heatmap
+↓
+Five-Panel Results (Input, GT Mask, Pred Mask, Heatmap, Overlay)
+```
 
 ---
 
@@ -105,23 +132,23 @@ Predicted Mask           Predicted Label
 
 All experiments were implemented in **Kaggle Notebooks** (also included in the `notebooks/` folder):
 
-| Notebook                          | Description                                  |
-|-----------------------------------|----------------------------------------------|
-| `1_segmentation_unet.ipynb`       | U-Net segmentation training + evaluation     |
-| `2_classification_resnet50.ipynb` | ResNet50 classification on tumor crops       |
-| `3_multitask_model.ipynb`         | Joint segmentation + classification model    |
+| Notebook                          | Description                               |
+| --------------------------------- | ----------------------------------------- |
+| `1_segmentation_unet.ipynb`       | U-Net segmentation training + evaluation  |
+| `2_classification_resnet50.ipynb` | ResNet50 classification on tumor crops    |
+| `3_multitask_model.ipynb`         | Joint segmentation + classification model |
+| `4_multitask_gradcam.ipynb`       | Multi-task CNN + Grad-CAM explainability  |
 
 👉 You can open these notebooks directly in Kaggle or Jupyter Notebook to view code, results, and visualizations.
 
----
 
-Perfect! Here's a **visually appealing, GitHub-ready version** of your Results section using markdown with icons, colored highlights, and neat tables:
+Perfect — I’ve added your **Multi‑task CNN + Grad‑CAM** results to the **Results** section without changing anything else. You can paste this block straight into your README:
 
 ---
 
 ## 📊 Results
 
-### 🔹 Segmentation (U-Net)
+### 🔹 Segmentation (U‑Net)
 
 **Metrics:**
 
@@ -144,7 +171,7 @@ Perfect! Here's a **visually appealing, GitHub-ready version** of your Results s
 
 **Classification Report:**
 
-| Class            | Precision | Recall |  F1-score  | Support |
+| Class            | Precision | Recall |  F1‑score  | Support |
 | ---------------- | :-------: | :----: | :--------: | :-----: |
 | 🟢 Benign        |    0.95   |  0.94  |    0.95    |   179   |
 | 🔴 Malignant     |    0.91   |  0.87  |    0.89    |    84   |
@@ -155,7 +182,7 @@ Perfect! Here's a **visually appealing, GitHub-ready version** of your Results s
 
 ---
 
-### 🔹 Multi-task Model (Segmentation + Classification)
+### 🔹 Multi‑task Model (Segmentation + Classification)
 
 **Metrics:**
 
@@ -163,6 +190,30 @@ Perfect! Here's a **visually appealing, GitHub-ready version** of your Results s
 * 🟩 **Segmentation IoU:** `0.5060`
 * 🟦 **Classification Accuracy:** `0.9272`
 
+---
+
+### 🔹 Multi‑task CNN + Grad‑CAM (Ours)
+
+**Validation Metrics:**
+
+* 📉 **val\_loss:** `0.4616`
+* 🧩 **val\_dice:** `0.6502`
+* 🧮 **val\_iou:** `0.5564`
+* 🎯 **val\_acc:** `0.9104`
+
+**Classification Report (val, n = 156):**
+
+| Class     | Precision | Recall | F1‑score | Support |
+| --------- | :-------: | :----: | :------: | :-----: |
+| Benign    |   0.9101  | 0.9310 |  0.9205  |    87   |
+| Malignant |   0.9500  | 0.9048 |  0.9268  |    42   |
+| Normal    |   0.8519  | 0.8519 |  0.8519  |    27   |
+
+**Overall Accuracy:** `0.9103`
+**Macro Avg:** Precision `0.9040` · Recall `0.8959` · F1 `0.8997`
+**Weighted Avg:** Precision `0.9108` · Recall `0.9103` · F1 `0.9103`
+
+**Five‑Panel Visuals:** *(Input, GT Mask, Pred Mask, Grad‑CAM, Overlay — add to `results/figures/`)*
 
 ---
 
@@ -174,8 +225,11 @@ Include the following plots (place in `results/`):
 * Accuracy Curves
 * Confusion Matrix
 * Example Segmentation Masks with Predicted Labels
+### Sample Result
 
+![Result Example](results/sample_result.png)
 ---
+
 
 ## 🚀 Usage
 
