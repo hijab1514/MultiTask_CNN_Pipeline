@@ -6,14 +6,7 @@
 ![PyTorch](https://img.shields.io/badge/PyTorch-DeepLearning-red.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
----
 
-Got it 👍 You already have **Approach 1** (Two-Stage Pipeline) and **Approach 2** (Multi-task Model).
-We just need to add your **third approach** (from your repo: *Multi-task CNN + Grad-CAM Explainability*) without touching the rest.
-
-Here’s the updated version with **Approach 3** added:
-
----
 
 ## 📌 Project Overview
 
