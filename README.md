@@ -227,7 +227,7 @@ Include the following plots (place in `results/`):
 * Example Segmentation Masks with Predicted Labels
 ### Sample Result
 
-![Result Example](results/sample_result.png)
+![Result Example](results/export_001.png)
 ---
 
 
