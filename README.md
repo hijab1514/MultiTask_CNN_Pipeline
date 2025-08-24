@@ -124,7 +124,7 @@ Five-Panel Results (Input, GT Mask, Pred Mask, Heatmap, Overlay)
 
 ## 📝 Flowchart
 
-![Flowchart](docs/KakaoTalk_20250821_201914552.png)
+![Flowchart](docs/Grad cam flowchart.png)
 
 ---
 
